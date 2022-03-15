@@ -1,5 +1,5 @@
 import { useState } from "react"; 
-import { createUser } from "../../utils"; 
+import { createUser, login } from "../../utils"; 
 
 
 export const Login = ({setUser}) => {
@@ -11,11 +11,15 @@ const [bool, setBool] = useState(false);
 
 const submitHandler = (e) => {
     e.preventDefault();
-    if( email && email.includes("@")) {
     // setUser({username: username, email: email, pass: pass});
-    createUser(username, email, pass);
+    if (bool) {
+      login(username, pass, setUser);
+    } else {
+    if( email && email.includes("@")) {
+    createUser(username, email, pass, setUser);
    }
-  };
+  }
+};
 
     return (
     <>
@@ -23,7 +27,9 @@ const submitHandler = (e) => {
       <form onSubmit={submitHandler}>
       <input 
       onChange={(event) => setUsername(event.target.value) } 
-      placeholder= "username" />
+      placeholder= "username"
+       />
+
       {!bool && 
       <input 
       onChange={(event) => setEmail(event.target.value) }
