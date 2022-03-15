@@ -1,4 +1,5 @@
-import { useState } from "react";  
+import { useState } from "react"; 
+import { createUser } from "../../utils"; 
 
 
 export const Login = ({setUser}) => {
@@ -11,7 +12,8 @@ const [bool, setBool] = useState(false);
 const submitHandler = (e) => {
     e.preventDefault();
     if( email && email.includes("@")) {
-    setUser({username: username, email: email, pass: pass});
+    // setUser({username: username, email: email, pass: pass});
+    createUser(username, email, pass);
    }
   };
 
